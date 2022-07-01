@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:last_project/pages/Home.dart';
 import 'package:last_project/pages/productDetails.dart';
 import 'package:last_project/services/network_helper.dart';
 
@@ -35,7 +36,9 @@ class _OrderState extends State<Order> {
         centerTitle: true,
         leading: GestureDetector(
           onTap: (() {
-            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Home();
+            }));
           }),
           child: Icon(
             Icons.arrow_back,

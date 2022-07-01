@@ -156,7 +156,8 @@ class _ProductDetailState extends State<ProductDetail> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                       side: BorderSide(color: Colors.blue)))),
-                          onPressed: () => null),
+                          onPressed: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Order()))),
                     ),
                   ],
                 )
