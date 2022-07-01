@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:last_project/pages/login.dart';
+import 'package:last_project/pages/splash.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SafeArea(child: Scaffold(body: Login())),
+      home: SafeArea(child: Scaffold(body: Splash())),
     );
   }
 }

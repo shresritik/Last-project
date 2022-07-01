@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:last_project/pages/order.dart';
 
-class ProductDetail extends StatelessWidget {
-  const ProductDetail({Key? key}) : super(key: key);
+import '../models/apiModel.dart';
 
+class ProductDetail extends StatefulWidget {
+  final index;
+
+  ProductDetail({required this.index});
+
+  @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +44,9 @@ class ProductDetail extends StatelessWidget {
             padding: EdgeInsets.all(20),
             // width: double.infinity,
             child: Center(
-              child: Image.asset(
-                'images/flower.png',
+              child: Image.network(
+                'http://mark.bslmeiyu.com/uploads/' +
+                    widget.index.img.toString(),
               ),
             ),
           ),
@@ -46,12 +57,23 @@ class ProductDetail extends StatelessWidget {
               children: [
                 Text(
                   textAlign: TextAlign.left,
-                  "blue Roses Bunch",
+                  widget.index.name.toString(),
                   style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  height: 5,
                 ),
                 Text(
                   textAlign: TextAlign.left,
-                  "Rs. 1000",
+                  widget.index.location.toString(),
+                  style: TextStyle(fontSize: 15, color: Colors.grey),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  textAlign: TextAlign.left,
+                  'Rs. ' + widget.index.price.toString(),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -59,43 +81,35 @@ class ProductDetail extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(
-                      Icons.star,
-                      color: Color.fromARGB(255, 255, 217, 0),
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Color.fromARGB(255, 255, 217, 0),
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Color.fromARGB(255, 255, 217, 0),
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Color.fromARGB(255, 255, 217, 0),
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Color.fromARGB(255, 193, 193, 193),
+                    SizedBox(
+                      height: 40,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: widget.index.stars,
+                          itemBuilder: ((context, index) {
+                            return Icon(
+                              Icons.star,
+                              color: Color.fromARGB(255, 255, 217, 0),
+                            );
+                          })),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        '4.2',
+                        widget.index.stars.toString() + '/5',
                         style: TextStyle(fontSize: 18),
                       ),
-                    )
+                    ),
                   ],
                 ),
-                SizedBox(height: 20),
                 Text(
                   "Description",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "A rose for a rose; Perfect gift for your beloved. Any celebration, flowers are the necessary answer. A rose for a rose; Perfect gift for your beloved. Any celebration, flowers are the necessary answer",
+                  widget.index.description.toString(),
                   style: TextStyle(fontSize: 18),
                 ),
                 SizedBox(
@@ -107,8 +121,12 @@ class ProductDetail extends StatelessWidget {
                     SizedBox(
                       width: 150,
                       child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text('Buy Now', style: TextStyle(fontSize: 16)),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Order()));
+                        },
+                        child:
+                            Text('GET TICKET', style: TextStyle(fontSize: 16)),
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(
                                 EdgeInsets.all(15)),
