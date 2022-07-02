@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:last_project/pages/Home.dart';
+import 'package:last_project/pages/login.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -118,7 +120,12 @@ class _SignupState extends State<Signup> {
                 width: 350,
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Login();
+                      }));
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(
@@ -137,7 +144,10 @@ class _SignupState extends State<Signup> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Login();
+                        }));
                       },
                       child: Text(
                         "Login",

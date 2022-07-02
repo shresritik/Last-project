@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:last_project/pages/login.dart';
+import 'package:last_project/pages/signup.dart';
 
 class Splash extends StatefulWidget {
   Splash({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
   navigateHome() async {
     await Future.delayed(Duration(milliseconds: 2000), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: ((context) => (Login()))));
+        context, MaterialPageRoute(builder: ((context) => (Signup()))));
   }
 
   @override
